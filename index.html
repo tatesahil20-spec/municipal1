@@ -26,17 +26,533 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#2563eb',
-                        secondary: '#475569',
-                        accent: '#8b5cf6',
+                        primary: '#1F4FD8',
+                        secondary: '#64748B',
+                        accent: '#2B5FDB',
+                        background: '#F4F6F8',
+                        surface: '#FFFFFF',
+                        error: '#B91C1C',
+                        success: '#15803D',
+                        warning: '#B45309',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'none': '0',
+                        'sm': '2px',
+                        DEFAULT: '4px',
+                        'md': '6px',
+                        'lg': '8px',
+                        'xl': '12px',
+                        '2xl': '16px',
+                        '3xl': '24px',
+                        'full': '9999px',
+                    },
+                    boxShadow: {
+                        'none': 'none',
+                        'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                        DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+                        'md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                        'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
                     }
                 }
             }
         }
     </script>
+
+    <style>
+        /* Paper-to-Digital Theme Overrides */
+        :root {
+            /* Color System Overrides */
+            --color-primary: #1F4FD8 !important;
+            --color-primary-light: #2B5FDB !important;
+            --color-bg-body: #F4F6F8 !important;
+            /* Paper white / soft neutral grey */
+            --color-bg-card: #FFFFFF !important;
+            --color-text-main: #111827 !important;
+            --color-text-muted: #64748B !important;
+            --color-border: #E2E8F0 !important;
+
+            /* Component Variables Override */
+            --cc-bg: #F4F6F8 !important;
+            --cc-card-bg: #FFFFFF !important;
+            --cc-border: #E2E8F0 !important;
+            --cc-primary: #1F4FD8 !important;
+            --cc-critical: #DC2626 !important;
+
+            /* Typography */
+            font-family: 'Inter', sans-serif !important;
+
+            /* Spacing & Radius */
+            --radius-sm: 2px !important;
+            --radius-md: 4px !important;
+            --radius-lg: 6px !important;
+        }
+
+        body {
+            background-color: var(--color-bg-body) !important;
+            color: var(--color-text-main) !important;
+        }
+
+        /* Card Restyling - Document/File feel */
+        .card,
+        .glass-card,
+        .cc-metric-card,
+        .cc-infra-section,
+        .cc-emergency-section,
+        .glass-panel,
+        .data-grid-container,
+        .cc-map-container {
+            background: #FFFFFF !important;
+            border: 1px solid #E2E8F0 !important;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-radius: 6px !important;
+        }
+
+        /* Incident Alert Restoration - High Priority */
+        .cc-alert-card {
+            background: #FFFFFF !important;
+            border: 1px solid #E2E8F0 !important;
+            border-left: 4px solid var(--cc-critical) !important;
+            /* Restore the red indicator */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+            border-radius: 4px !important;
+            margin-bottom: 12px;
+        }
+
+        /* Buttons - Official & Structured */
+        .btn,
+        button,
+        .cc-dispatch-btn {
+            border-radius: 4px !important;
+            font-weight: 500 !important;
+            text-transform: none !important;
+            letter-spacing: 0.01em !important;
+            box-shadow: none !important;
+        }
+
+        .btn-primary,
+        .cc-dispatch-btn {
+            background-color: #1F4FD8 !important;
+            color: white !important;
+        }
+
+        .btn-primary:hover,
+        .cc-dispatch-btn:hover {
+            background-color: #1E40AF !important;
+        }
+
+        /* Inputs - Form-like */
+        input,
+        select,
+        textarea,
+        .input-std {
+            background-color: #FFFFFF !important;
+            border: 1px solid #CBD5E1 !important;
+            border-radius: 4px !important;
+            color: #1E293B !important;
+            box-shadow: none !important;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #1F4FD8 !important;
+            outline: 2px solid rgba(31, 79, 216, 0.1) !important;
+        }
+
+        /* Sidebar/Nav */
+        .sidebar {
+            background-color: #FFFFFF !important;
+            border-right: 1px solid #E2E8F0 !important;
+        }
+
+        .nav-item.active {
+            background-color: #EFF6FF !important;
+            color: #1F4FD8 !important;
+            border-left: 3px solid #1F4FD8 !important;
+            border-radius: 0 4px 4px 0 !important;
+        }
+
+        /* Badges - Muted Status Indicators */
+        .badge,
+        .cc-time-badge,
+        .badge-pending,
+        .badge-in-progress,
+        .badge-completed,
+        .badge-rejected {
+            border-radius: 4px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.025em !important;
+        }
+
+        /* Remove "Startup" effects globally */
+        .levitate-icon {
+            animation: none !important;
+        }
+
+        /* General Background */
+        .main-content {
+            background: #F4F6F8 !important;
+        }
+
+        /* -----------------------------------------------------------------
+           LOGIN SCREEN OVERRIDES - "Interesting & Innovative"
+           ----------------------------------------------------------------- */
+
+        /* Target the outer container of the login screen */
+        div[class*="h-screen"][class*="w-full"][class*="flex"][class*="items-center"] {
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #7C3AED 100%) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Add a dynamic overlay pattern */
+        div[class*="h-screen"][class*="w-full"][class*="flex"][class*="items-center"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.2) 0%, transparent 30%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* The Login Card - Glassy & Modern */
+        #login-card {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+            color: white !important;
+            z-index: 10 !important;
+        }
+
+        /* Login Card Text */
+        #login-card h1,
+        #login-card p,
+        #login-card h3 {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Login Inputs */
+        #login-card input {
+            background: rgba(0, 0, 0, 0.3) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+        }
+
+        #login-card input::placeholder {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        #login-card input:focus {
+            background: rgba(0, 0, 0, 0.5) !important;
+            border-color: #60A5FA !important;
+            box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3) !important;
+        }
+
+        /* Login Button - Gradient & Glow */
+        #login-card button[type="submit"] {
+            background: linear-gradient(to right, #2563EB, #7C3AED) !important;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4) !important;
+            border: none !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #login-card button[type="submit"]:hover {
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6) !important;
+            transform: translateY(-1px);
+        }
+
+        /* -----------------------------------------------------------------
+           SCI-FI ANTI-GRAVITY UI - CRITICAL INCIDENTS PANEL
+           ----------------------------------------------------------------- */
+
+        /* Panel Container - Deep Space Glass */
+        .cc-emergency-section {
+            background: radial-gradient(circle at top right, #1e293b, #0f172a) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ambient Light Glow */
+        .cc-emergency-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+            animation: pulse-ambient 10s infinite alternate;
+            pointer-events: none;
+        }
+
+        /* Section Header */
+        .cc-emergency-header {
+            color: #E2E8F0 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* Floating Incident Cards */
+        .cc-alert-card {
+            background: rgba(15, 23, 42, 0.6) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-left: 3px solid #EF4444 !important;
+            /* Neon Red Critical Line */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+            color: #E2E8F0 !important;
+            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            animation: float 6s ease-in-out infinite;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cc-alert-card:hover {
+            transform: translateY(-5px) scale(1.02) !important;
+            box-shadow: 0 15px 40px -10px rgba(239, 68, 68, 0.3) !important;
+            /* Red Glow on Hover */
+            border-color: rgba(239, 68, 68, 0.5) !important;
+            background: rgba(30, 41, 59, 0.8) !important;
+        }
+
+        /* Card Text Override */
+        .cc-alert-title {
+            color: #FFFFFF !important;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .cc-alert-details {
+            color: #94A3B8 !important;
+        }
+
+        /* Neon Chips & Badges */
+        .cc-time-badge {
+            background: rgba(239, 68, 68, 0.2) !important;
+            color: #FCA5A5 !important;
+            border: 1px solid rgba(239, 68, 68, 0.3) !important;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+            font-family: 'Courier New', monospace;
+            /* Tech vibe */
+        }
+
+        /* Floating Action Button inside Card */
+        .cc-dispatch-btn {
+            background: rgba(59, 130, 246, 0.2) !important;
+            border: 1px solid rgba(96, 165, 250, 0.3) !important;
+            color: #60A5FA !important;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.7rem;
+        }
+
+        .cc-dispatch-btn:hover {
+            background: rgba(59, 130, 246, 0.4) !important;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            text-shadow: 0 0 5px white;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulse-ambient {
+            0% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
+
+        /* Staggered Animation Delays for Cards */
+        .cc-alert-card:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .cc-alert-card:nth-child(2) {
+            animation-delay: 1.5s;
+        }
+
+        .cc-alert-card:nth-child(3) {
+            animation-delay: 3s;
+        }
+
+        .cc-alert-card:nth-child(4) {
+            animation-delay: 0.5s;
+        }
+
+        /* Header / Text Specifics (General) */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .page-title,
+        .title {
+            color: #111827 !important;
+            letter-spacing: -0.01em;
+        }
+
+        /* Data Grid / Table */
+        .data-grid th {
+            background-color: #F8FAFC !important;
+            color: #64748B !important;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid #E2E8F0 !important;
+        }
+
+        /* -----------------------------------------------------------------
+           SYSTEM METRICS CARDS - OVERFLOW FIX & ALIGNMENT
+           ----------------------------------------------------------------- */
+
+        /* Card Container */
+        .cc-metric-card {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            padding: 20px !important;
+            min-height: 140px !important;
+            height: 100% !important;
+            background: #FFFFFF !important;
+            border: 1px solid #E2E8F0 !important;
+            border-radius: 10px !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .cc-metric-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Top Row: Icon + Count Tag */
+        .cc-metric-card>div:first-child {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            width: 100% !important;
+            margin-bottom: 12px !important;
+        }
+
+        /* Icon Styling */
+        .cc-metric-card svg {
+            width: 28px !important;
+            height: 28px !important;
+            color: #1F4FD8 !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* Metric Number (Large Bold) */
+        .cc-metric-card h3,
+        .cc-metric-card .text-3xl,
+        .cc-metric-card .text-2xl,
+        .cc-metric-card [class*="font-bold"] {
+            font-size: clamp(1.5rem, 4vw, 2rem) !important;
+            /* Responsive font */
+            font-weight: 700 !important;
+            color: #111827 !important;
+            line-height: 1.2 !important;
+            margin: 0 0 4px 0 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+
+        /* Label (Medium Weight) */
+        .cc-metric-card p,
+        .cc-metric-card .text-sm {
+            font-size: 0.875rem !important;
+            font-weight: 500 !important;
+            color: #475569 !important;
+            margin: 0 0 4px 0 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            max-width: 100% !important;
+        }
+
+        /* Helper Text (Small Muted) */
+        .cc-metric-card .text-xs,
+        .cc-metric-card span[class*="text-gray"],
+        .cc-metric-card span[class*="text-slate"] {
+            font-size: 0.75rem !important;
+            color: #94A3B8 !important;
+            margin-top: auto !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+
+        /* Count Tag (Top Right Badge) */
+        .cc-metric-card .badge,
+        .cc-metric-card [class*="rounded-full"] {
+            font-size: 0.7rem !important;
+            padding: 2px 8px !important;
+            border-radius: 9999px !important;
+            background: #EFF6FF !important;
+            color: #1F4FD8 !important;
+            font-weight: 600 !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* Grid Container for Cards */
+        .cc-metric-card-container,
+        [class*="grid"][class*="gap"] {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            gap: 16px !important;
+        }
+
+        /* Prevent any child from overflowing */
+        .cc-metric-card * {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+    </style>
     <script type="module" crossorigin src="./assets/main-Dt0d425S.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/index-Dn41Jttm.js">
     <link rel="stylesheet" crossorigin href="./assets/index-xTyGbtbN.css">
@@ -45,6 +561,79 @@
 
 <body>
     <div id="root"></div>
+    <script>
+        // Microcopy & Text Updates for "Paper-to-Digital" Theme + Auth Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'childList') {
+                        processUpdates();
+                    }
+                });
+            });
+
+            observer.observe(document.body, { childList: true, subtree: true });
+
+            function processUpdates() {
+                // 1. Text Replacements
+                const titles = document.querySelectorAll('h1, h3, .text-3xl');
+                titles.forEach(el => {
+                    if (el.innerText.includes('Nagarsevak AI') || el.innerText.includes('MuniSafe')) {
+                        el.innerText = 'Municipal Dashboard';
+                    }
+                    if (el.innerText.includes('Unified Municipal Command')) {
+                        el.innerText = 'Official Civic Record System';
+                    }
+                });
+
+                // 2. Auth Screen - Remove Staff Button Logic
+                const authButtons = document.querySelectorAll('#login-card button:not([type="submit"])');
+                authButtons.forEach(btn => {
+                    if (btn.innerText.includes('Staff')) {
+                        // Hide the button element entirely
+                        btn.style.display = 'none';
+                        const parent = btn.parentElement;
+                        if (parent) {
+                            // Adjust the pill container to look centered/single
+                            // If it's the toggle container
+                            const adminBtn = Array.from(authButtons).find(b => b.innerText.includes('Admin'));
+                            if (adminBtn) {
+                                // Make admin button take full width or visually look like a single label
+                                adminBtn.style.width = '100%';
+                                adminBtn.style.color = 'white';
+                                adminBtn.style.textAlign = 'center';
+                                adminBtn.style.cursor = 'default';
+
+                                // Hide the sliding background blob if possible, or force it
+                                const slider = parent.querySelector('.absolute.top-1.left-1');
+                                if (slider) slider.style.display = 'none';
+
+                                // Clean up parent container style
+                                parent.style.background = 'transparent';
+                                parent.style.padding = '0';
+                                parent.style.justifyContent = 'center';
+                            }
+                        }
+                    }
+                });
+
+                // 3. Login Button Text
+                const loginBtn = document.querySelector('button[type="submit"] span');
+                if (loginBtn && loginBtn.innerText === 'Initialize System') {
+                    loginBtn.innerText = 'Authenticate Securely';
+                }
+
+                // 4. Logout -> Sign Out
+                const logoutBtn = document.querySelectorAll('button');
+                logoutBtn.forEach(btn => {
+                    if (btn.innerText.includes('Logout')) {
+                        const span = btn.querySelector('span');
+                        if (span) span.innerText = 'Sign Out';
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 
